@@ -1,0 +1,63 @@
+"""
+Sample Python Program for GitHub
+Author: Your Name
+Description:
+    A simple contact book program that demonstrates
+    Python dictionaries, loops, and functions.
+"""
+
+contacts = {}
+
+def add_contact(name, phone):
+    """Add a new contact"""
+    contacts[name] = phone
+    print(f"✅ Contact '{name}' added successfully!")
+
+def view_contacts():
+    """View all contacts"""
+    if not contacts:
+        print("No contacts found! 📭")
+    else:
+        print("\n📒 Your Contacts:")
+        for name, phone in contacts.items():
+            print(f"{name}: {phone}")
+
+def search_contact(name):
+    """Search for a contact by name"""
+    if name in contacts:
+        print(f"🔍 Found: {name} -> {contacts[name]}")
+    else:
+        print("Contact not found.")
+
+def delete_contact(name):
+    """Delete a contact"""
+    if name in contacts:
+        del contacts[name]
+        print(f"❌ Contact '{name}' deleted.")
+    else:
+        print("Contact not found.")
+
+def main():
+    print("=== Contact Book ===")
+    while True:
+        print("\nOptions:")
+        print("1. Add Contact")
+        print("2. View Contacts")
+        print("3. Search Contact")
+        print("4. Delete Contact")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1-5): ")
+
+        if choice == "1":
+            name = input("Enter name: ")
+            phone = input("Enter phone number: ")
+            add_contact(name, phone)
+        elif choice == "2":
+            view_contacts()
+        elif choice == "3":
+            name = input("Enter name to search: ")
+            search_contact(name)
+        elif choice == "4":
+            name = input("Enter name to delete: ")
+            delete_conta_
