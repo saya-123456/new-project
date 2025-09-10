@@ -1,0 +1,41 @@
+"""
+Sample Python Program for GitHub
+Author: Your Name
+Description:
+    A simple weather app that fetches current weather
+    data using the OpenWeatherMap API.
+    
+    Demonstrates: requests module, JSON handling, and error handling.
+"""
+
+import requests
+
+# Replace with your own OpenWeatherMap API key
+API_KEY = "your_api_key_here"
+BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
+
+def get_weather(city):
+    """Fetch weather data for a given city"""
+    params = {"q": city, "appid": API_KEY, "units": "metric"}
+    try:
+        response = requests.get(BASE_URL, params=params)
+        data = response.json()
+
+        if response.status_code == 200:
+            print(f"\n🌍 Weather in {city.title()}:")
+            print(f"Temperature: {data['main']['temp']}°C")
+            print(f"Weather: {data['weather'][0]['description'].title()}")
+            print(f"Humidity: {data['main']['humidity']}%")
+            print(f"Wind Speed: {data['wind']['speed']} m/s")
+        else:
+            print("⚠️ Error:", data.get("message", "Unable to fetch weather."))
+    except Exception as e:
+        print("❌ An error occurred:", e)
+
+def main():
+    print("=== Weather App ===")
+    city = input("Enter city name: ")
+    get_weather(city)
+
+if __name__ == "__main__":
+    main()
